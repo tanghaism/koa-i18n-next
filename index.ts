@@ -126,6 +126,14 @@ class KoaI18nNext {
           }
           break;
         }
+        case 'tld': {
+          const hostname = ctx.hostname.match(/(\.)(?!.*\1).*?$/);
+          const locale = hostname && hostname.length > 0 ? hostname[0].slice(1) : undefined;
+          if (locale && this.locales.includes(locale as string)) {
+            _locale = locale;
+          }
+          break;
+        }
         default: {
           if (typeof mode === 'function') {
             const locale = mode(ctx);
