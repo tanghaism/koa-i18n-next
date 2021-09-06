@@ -1,0 +1,26 @@
+{
+  "name": "koa-i18n-next",
+  "version": "0.0.1",
+  "description": "i18n middleware based on koa2",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "repository": "git@github.com:tanghaism/koa-i18n-next.git",
+  "author": "唐海 <280503392@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tanghaism/koa-i18n-next/issues"
+  },
+  "keywords": [
+    "koa",
+    "i18n",
+    "locale"
+  ],
+  "dependencies": {
+    "koa": "^2.13.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.4",
+    "@types/node": "^16.7.10"
+  }
+}
