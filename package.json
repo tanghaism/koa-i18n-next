@@ -1,6 +1,6 @@
 {
   "name": "koa-i18n-next",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "i18n middleware based on koa2",
   "main": "index.js",
   "module": "index.js",
@@ -17,14 +17,14 @@
     "locale"
   ],
   "dependencies": {
+    "ejs": "^3.1.6",
     "koa": "^2.13.1",
     "koa-router": "^10.1.1",
-    "koa-views": "^7.0.1",
-    "ejs": "^3.1.6"
+    "koa-views": "^7.0.1"
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",
-    "@types/node": "^16.7.10",
-    "@types/koa-router": "^7.4.4"
+    "@types/koa-router": "^7.4.4",
+    "@types/node": "^16.7.10"
   }
 }
