@@ -7,7 +7,6 @@ i18n middleware based on koa2. Support typescript project and ejs template!
 | :-----------: | :-------------: | :-----: | :------: | ----------------------------- |
 |    dirPath    |     string      |         |    Yes   | Languages folder path         |
 |fallbackLocale |     string      |         |    Yes   | To choose which language to use When the language file or language is not matched |
-|    locales    |    string[]     |         |    YES   | Language whitelist, languages not in the list will not be loaded |
 |     modes     |     Modes[]     |         |    YES   | How to get the current requested language, For detailed parameters, see Modes type below |
 |    preload    |    string[]     |         |   False  | Language files that need to be preloaded, it is not recommended to set too many languages |
 
@@ -93,7 +92,6 @@ app.use(koaI18nNext({
       return ctx.request.header['lang'] || 'en'
     }
   ], // 获取语种的方式，获取语种的优先级根据数组顺序排列，取到白名单语种为止，如果均没有获取到，则使用fallbackLocale设置的语种
-  locales: ['en', 'zh', 'zh-TW'], // 语种白名单，未添加进入的语种不会加载语言文件，不会返回对应的文案
 }))
 
 // 模版引擎

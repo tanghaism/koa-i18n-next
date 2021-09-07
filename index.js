@@ -10,7 +10,6 @@ class KoaI18nNext {
     const {
       dirPath,
       preload = [],
-      locales = [],
       fallbackLocale,
       modes = ['query', 'subdomain', 'cookie', 'header'],
     } = options;
@@ -24,7 +23,15 @@ class KoaI18nNext {
     // 已读取的国际化文案
     this.messages = {};
     // 可以匹配的所有语言
-    this.locales = locales;
+    this.locales = [];
+
+    const filesList = fs.readdirSync(this.dirPath);
+
+    for(let file of filesList){
+      if(!/\.json$/.test(file.toLocaleLowerCase())) continue;
+      this.locales.push(file.replace(/\.json$/i,''));
+    }
+
     const _preload = [...this.preload];
     if (this.fallbackLocale) _preload.unshift(this.fallbackLocale);
     this.loadLocaleFile(_preload);

@@ -21,7 +21,6 @@ export interface I18nNextOptions {
     modes: (I18nNextModes | Function)[];
     preload?: string[];
     fallbackLocale?: string;
-    locales: string[];
 }
 declare class KoaI18nNext {
     messages: IMessages;
