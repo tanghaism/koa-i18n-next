@@ -1,6 +1,16 @@
 # koa-i18n-next
 i18n middleware based on koa2. Support typescript project and ejs template!
 
+## Install
+
+```shell
+npm install koa-i18n-next
+
+// or
+
+yarn add koa-i18n-next
+```
+
 ## Options
 
 |     props     |      type       | default | required | remark                        |
