@@ -35,7 +35,7 @@ const router = new KoaRouter();
 
 router.get('/api', async (ctx) => {
   ctx.body = {
-    message: ctx.$t('test')
+    message: ctx.$t('test', ['!haha'])
   }
 })
 
@@ -51,5 +51,7 @@ app.use(router.routes());
 
 
 app.listen(3000, () => {
-  console.log('服务启动成功')
+  console.log('serve start success!');
+  console.log('http://localhost:3000?locale=zh-tw');
+  console.log('http://localhost:3000/api?locale=en');
 })
