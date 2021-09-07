@@ -179,18 +179,19 @@ class KoaI18nNext {
 }
 
 export default function KoaI18nNextMiddleware(options: I18nNextOptions) {
+  const i18n = new KoaI18nNext(options);
   return async (ctx: DefaultContext, next: Next) => {
-    if (!ctx.app.i18n) {
-      ctx.app.i18n = new KoaI18nNext(options);
+    if(ctx.app.i18n){
+      ctx.app.i18n = i18n;
     }
-    const locale = ctx.app.i18n.getLocale(ctx as Context);
-    ctx.app.i18n.loadLocaleFile(locale);
-    const message = ctx.app.i18n.messages[locale] || {};
+    const locale = i18n.getLocale(ctx as Context);
+    i18n.loadLocaleFile(locale);
+    const message = i18n.messages[locale] || {};
     ctx.$t = ctx.state.$t = (
       key: string,
       value?: { [props: string]: string | number } | (string | number)[],
     ): string => {
-      return ctx.app.i18n.$t(message, key, value);
+      return i18n.$t(message, key, value);
     };
     return await next();
   };

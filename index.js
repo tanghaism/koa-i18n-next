@@ -129,15 +129,18 @@ class KoaI18nNext {
 }
 
 function KoaI18nNextMiddleware(options) {
+
+  const i18n = new KoaI18nNext(options);
+
   return async (ctx, next) => {
-    if (!ctx.app.i18n) {
-      ctx.app.i18n = new KoaI18nNext(options);
+    if(ctx.app.i18n){
+      ctx.app.i18n = i18n;
     }
-    const locale = ctx.app.i18n.getLocale(ctx);
-    ctx.app.i18n.loadLocaleFile(locale);
-    const message = ctx.app.i18n.messages[locale] || {};
+    const locale = i18n.getLocale(ctx);
+    i18n.loadLocaleFile(locale);
+    const message = i18n.messages[locale] || {};
     ctx.$t = ctx.state.$t = (key, value) => {
-      return ctx.app.i18n.$t(message, key, value);
+      return i18n.$t(message, key, value);
     };
     return await next();
   };
