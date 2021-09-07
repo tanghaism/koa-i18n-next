@@ -40,10 +40,7 @@ router.get('/api', async (ctx) => {
 })
 
 router.get('/', async (ctx) => {
-  await ctx.render('error', {
-    title: ctx.$t('test'),
-    $t: ctx.$t
-  })
+  await ctx.render('error')
 })
 
 // 初始化路由配置

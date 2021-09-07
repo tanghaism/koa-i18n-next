@@ -98,7 +98,9 @@ class KoaI18nNext {
       switch (mode) {
         case 'query': {
           const { locale } = request.query;
-          if (locale) _locale = locale;
+          if (locale && this.locales.includes(locale.toString())) {
+            _locale = locale;
+          }
           break;
         }
         case 'subdomain': {
@@ -184,7 +186,7 @@ export default function KoaI18nNextMiddleware(options: I18nNextOptions) {
     const locale = ctx.app.i18n.getLocale(ctx as Context);
     ctx.app.i18n.loadLocaleFile(locale);
     const message = ctx.app.i18n.messages[locale] || {};
-    ctx.$t = (
+    ctx.$t = ctx.state.$t = (
       key: string,
       value?: { [props: string]: string | number } | (string | number)[],
     ): string => {

@@ -57,7 +57,9 @@ class KoaI18nNext {
       switch (mode) {
         case 'query': {
           const { locale } = request.query;
-          if (locale) _locale = locale;
+          if (locale && this.locales.includes(locale)) {
+            _locale = locale;
+          }
           break;
         }
         case 'subdomain': {
@@ -106,11 +108,10 @@ class KoaI18nNext {
     try {
       const data = fs.readFileSync(fullPath);
       if (data) return JSON.parse(data);
-      return {};
     } catch (e) {
       console.warn('未发现语言文件：' + fullPath);
-      return {};
     }
+    return {};
   }
 
   // 加载文件内容
@@ -135,7 +136,7 @@ function KoaI18nNextMiddleware(options) {
     const locale = ctx.app.i18n.getLocale(ctx);
     ctx.app.i18n.loadLocaleFile(locale);
     const message = ctx.app.i18n.messages[locale] || {};
-    ctx.$t = (key, value) => {
+    ctx.$t = ctx.state.$t = (key, value) => {
       return ctx.app.i18n.$t(message, key, value);
     };
     return await next();
