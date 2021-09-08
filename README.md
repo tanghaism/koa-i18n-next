@@ -36,6 +36,20 @@ modes = [
 ]
 ```
 
+## Props
+Get the language in the context
+1. <code>Router</code>
+```ts
+router.get('/', async (ctx) => {
+  ctx.body = {
+    locale: ctx.state.$locale // ==> or ctx.$locale
+  }
+})
+```
+2. <code>Ejs</code>
+```html
+<h1><%= $locale %></h1>
+```
 ## Methods
 
 ```ts

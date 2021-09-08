@@ -140,12 +140,10 @@ function KoaI18nNextMiddleware(options) {
   const i18n = new KoaI18nNext(options);
 
   return async (ctx, next) => {
-    if(ctx.app.i18n){
-      ctx.app.i18n = i18n;
-    }
     const locale = i18n.getLocale(ctx);
     i18n.loadLocaleFile(locale);
     const message = i18n.messages[locale] || {};
+    ctx.$locale = ctx.state.$locale = locale;
     ctx.$t = ctx.state.$t = (key, value) => {
       return i18n.$t(message, key, value);
     };

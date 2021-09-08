@@ -4,6 +4,7 @@ declare module 'koa' {
         i18n: KoaI18nNext;
     }
     interface DefaultContext {
+        $locale: string | undefined;
         $t: (key: string, value?: {
             [props: string]: string | number;
         } | (string | number)[]) => string;
